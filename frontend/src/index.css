@@ -1,0 +1,178 @@
+/* Modern palette & base */
+:root{
+  --bg: #0f172a;
+  --card: #0b1220;
+  --muted: #94a3b8;
+  --accent: linear-gradient(90deg,#7c3aed 0%,#06b6d4 100%);
+  --glass: rgba(255,255,255,0.04);
+  --success: #10b981;
+  --danger: #ef4444;
+  --radius: 12px;
+  --glass-border: rgba(255,255,255,0.05);
+  --text: #e6eef8;
+}
+
+/* Reset + layout */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 500px at 10% 10%, rgba(99,102,241,0.08), transparent),
+              radial-gradient(1000px 400px at 90% 90%, rgba(6,182,212,0.06), transparent),
+              var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding: 40px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* App container */
+.app-shell {
+  width: 100%;
+  max-width: 920px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--glass-border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Header / spacing utilities */
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+.h1 {
+  font-size:20px;
+  font-weight:600;
+  letter-spacing: -0.2px;
+}
+.subtle {
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Card */
+.card {
+  background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--glass);
+  margin-bottom: 14px;
+}
+
+/* Form */
+.user-form {
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.user-form .field {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1 1 220px;
+}
+input[type="text"], input[type="email"] {
+  background: var(--glass);
+  border: 1px solid transparent;
+  padding: 10px 12px;
+  color: var(--text);
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow .12s, transform .06s;
+}
+input:focus {
+  box-shadow: 0 6px 20px rgba(99,102,241,0.12);
+  transform: translateY(-1px);
+  border-color: rgba(124,58,237,0.35);
+}
+
+/* Buttons */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight:600;
+  color: white;
+  background: var(--glass);
+}
+.btn:disabled { opacity:0.6; cursor:default; transform:none; }
+.btn-primary {
+  background: var(--accent);
+  box-shadow: 0 8px 30px rgba(12,74,110,0.12), 0 2px 6px rgba(124,58,237,0.12);
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--muted);
+}
+
+/* List */
+.user-list {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap:12px;
+  margin-top:8px;
+}
+.user-item {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding:12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.user-item .name { font-weight:600; }
+.user-item .meta { color: var(--muted); font-size:13px; }
+
+/* Loader */
+.loader {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--muted);
+  font-weight:600;
+}
+.loader .spinner {
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.06);
+  border-top-color: rgba(99,102,241,0.9);
+  animation: spin 0.9s linear infinite;
+  box-shadow: 0 6px 18px rgba(99,102,241,0.06);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Error */
+.error {
+  color: var(--danger);
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.08);
+  padding: 10px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Small responsive tweak */
+@media (max-width:640px){
+  .app-shell { padding: 18px; }
+  .user-form { flex-direction:column; }
+}
