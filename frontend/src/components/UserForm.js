@@ -25,19 +25,23 @@ export default function UserForm({ onUserAdded = () => {} }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: 16 }}>
-      <div>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label>Name</label>
         <input
-          placeholder="Name"
+          type="text"
+          placeholder="Enter name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
           disabled={submitting}
         />
       </div>
-      <div>
+      <div className="form-group">
+        <label>Email</label>
         <input
-          placeholder="Email"
+          type="email"
+          placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={submitting}
@@ -45,12 +49,12 @@ export default function UserForm({ onUserAdded = () => {} }) {
       </div>
 
       {submitting ? (
-        <Loader message="Saving..." />
+        <Loader message="Adding user..." />
       ) : (
         <button type="submit">Add User</button>
       )}
 
-      {error && <div style={{ color: "red", marginTop: 8 }}>{error}</div>}
+      {error && <div className="error">{error}</div>}
     </form>
   );
 }

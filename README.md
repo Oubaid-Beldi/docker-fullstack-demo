@@ -38,6 +38,47 @@ fullstack-app/
 └── README.md
 ```
 
+
+
+### Configure environment variables
+
+Create a `.env` file in the `backend/` directory:
+
+```bash
+
+# filepath: backend/.env
+
+
+# PostgreSQL connection string
+
+# Format: postgres://username:password@host:port/database
+
+DATABASE_URL=postgres://user:pass@db:5432/mydb
+
+
+# Backend server port
+
+PORT=5000
+
+
+# Optional: Node environment (development/production)
+
+NODE_ENV=development
+
+
+# Optional: JWT secret for authentication (if using auth)
+
+# JWT_SECRET=your_secret_key_here
+
+
+# Optional: CORS allowed origins (comma-separated)
+
+# ALLOWED_ORIGINS=http://localhost:3000
+
+```
+
+**Template:**
+
 ---
 
 ## **Requirements**

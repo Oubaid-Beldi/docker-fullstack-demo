@@ -6,8 +6,11 @@ function App() {
   const [refresh, setRefresh] = useState(false);
   return (
     <div>
-      <UserForm onUserAdded={() => setRefresh(!refresh)} />
-      <UserList key={refresh}/>
+      <h1>User Management</h1>
+      <div className="container">
+        <UserForm onUserAdded={() => setRefresh(!refresh)} />
+        <UserList key={refresh} />
+      </div>
     </div>
   );
 }

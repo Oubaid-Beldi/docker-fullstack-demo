@@ -11,7 +11,6 @@ export default function UserList() {
     setLoading(true);
     setError(null);
     try {
-      // If you have "proxy" in package.json this can be just '/api/users'
       const res = await axios.get("/api/users");
       setUsers(res.data || []);
     } catch (err) {
@@ -31,20 +30,31 @@ export default function UserList() {
   if (error)
     return (
       <div>
-        <div style={{ color: "red", marginBottom: 8 }}>Error: {error}</div>
-        <button onClick={fetchUsers}>Retry</button>
+        <div className="error">{error}</div>
+        <button onClick={fetchUsers} style={{ marginTop: 16 }}>
+          Retry
+        </button>
       </div>
     );
 
-  if (!users.length) return <div>No users found.</div>;
+  if (!users.length)
+    return (
+      <div className="empty-state">
+        <p>No users yet. Add your first user above!</p>
+      </div>
+    );
 
   return (
-    <ul>
-      {users.map((u) => (
-        <li key={u.id || u._id}>
-          {u.name} {u.email ? `- ${u.email}` : ""}
-        </li>
-      ))}
-    </ul>
+    <div className="user-list-container">
+      <h2>Users</h2>
+      <div className="user-grid">
+        {users.map((u) => (
+          <div className="user-card" key={u.id || u._id}>
+            <div className="user-name">{u.name}</div>
+            {u.email && <div className="user-email">{u.email}</div>}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
